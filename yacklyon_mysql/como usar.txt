@@ -1,0 +1,67 @@
+antes de cargar la base de datos, recuerda que:
+
+1 debes tener creado la base de datos de nombre saladora.
+2 debes tener creado las tablas (son 5 tablas ok) 
+3 SI NO ingresaste NINGUN REGISTRO necesitas introducir
+ por lo menos UN REGISTRO en la tabla PRODUCTO
+
+tal como se indico en el tutorial 
+
+de todos modos aqui te dejo el codigo
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+ 
+ 	insert into producto
+    (COD_PRODUCTO,NOMBRE,MARCA,COLOR,MODELO,STOCK,PRECIO)
+    values
+    (100,"licuadora","stk","blanco","jty-371",10,2500);
+
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+
+una vez que tengas todo eso cargas la base de datos:
+
+ejemplo:
+	mysql> source C:\salvadora_bk.sql
+
+donde "C:" es la direccion de tu descarga,ok  
+
+
+EXITO!!!
+..........................................................
+
+
+ALGO MAS 
+
+
+es posible que tengas problema con la tabla producto
+en que situacion :
+
+el auto incrementado
+ej :  
+cod_producto
+100
+105
+106
+108
+
+para solucionarlo 
+
+borra la tabla:
+	drop table nombre de la tabla en este caso PRODUCTO;
+
+si no puedes, es que debes ELIMINAR las tablas con llave foranea antes
+(provee,compra)
+
+
+una vez hecho eso, vuelve a crear las tablas que eliminaste NO OLVIDES el punto numero 3 
+
+y carga la base de datos. 
+
+
+
+
+cualquier problema solo escribeme........
+
+
+  
