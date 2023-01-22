@@ -68,6 +68,73 @@ where precio = (select min(precio) from producto); -- uso otro query dentro de w
 -- 06 seleccionar todos los clientes que no tengan celular, los celulares comienzan con 7 o 6
 select * from cliente where telefono not like "7%" and telefono not like "6%";
 
+-- Modificacion y eliminacion
+create database prueba_db;
+use prueba_db;
+
+CREATE TABLE usuario( 
+CI INT, 
+COD_PRODUCTO INT, 
+FECHA_COMPRA DATE, 
+CANTIDAD INT, 
+PRIMARY KEY (CI) ); 
+
+CREATE TABLE PRODUCTO( 
+COD_PRODUCTO INT  primary key, 
+NOMBRE VARCHAR (22), 
+MARCA VARCHAR (22), 
+COLOR VARCHAR (22), 
+MODELO VARCHAR (22), 
+STOCK INT, 
+PRECIO INT
+); 
+CREATE TABLE servicios( 
+CI INT, 
+COD_PRODUCTO INT, 
+FECHA_COMPRA DATE, 
+CANTIDAD INT,
+PRIMARY KEY (CI), 
+foreign key (COD_PRODUCTO) 
+references producto (cod_producto) 
+); 
+
+show tables;
+-- quiero cambiar el nombre de la tabla usuario por cliente
+ALTER TABLE usuario rename cliente;
+DESCRIBE cliente;
+DESCRIBE producto;
+DESCRIBE servicios;
+
+-- de la tabla cliente eliminamos cantidad
+ALTER  TABLE cliente DROP cantidad;
+
+-- de la tabla producto eliminamos stock y color
+ALTER  TABLE producto DROP stock, DROP color;
+
+-- de la tabla servicios quiero eliminar el PK
+ALTER TABLE servicios DROP PRIMARY KEY;
+
+-- de la tabla servicios quiero eliminar el FK
+ALTER TABLE servicios DROP FOREIGN KEY cod_producto;  -- me da un error
+-- hago  
+SHOW CREATE TABLE servicios;
+ALTER TABLE servicios DROP FOREIGN KEY servicios_ibfk_1;  -- es el dato de la clave foranea del comando anterior
+
+-- insertar datos en las tablas
+DESCRIBE cliente;
+-- quiero añadir telefono como columna
+ALTER TABLE cliente ADD telefono INT;  -- la columna se insertó al final
+-- quiero agregar una columna en un lugar especificado, despues de CI
+ALTER TABLE cliente ADD nombre VARCHAR(15) AFTER CI;
+-- quiero añadir una columna al inicio
+ALTER TABLE cliente ADD codigo INT FIRST;
+-- quiero hacer una modificacion
+ALTER TABLE cliente CHANGE telefono CELULAR INT;
+-- quiero cambiar el tipo de dato de cod_producto de INT a VARCHAR
+ALTER TABLE cliente MODIFY cod_producto VARCHAR(20) NOT NULL;
+
+
+
 
 
 
