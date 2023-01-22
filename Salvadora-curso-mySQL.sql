@@ -20,7 +20,7 @@ select nombre, marca, color from producto WHERE color  IN ("rojo", "blanco","neg
 -- sum() count() min() max()
 select sum(precio) from producto; -- summamos el precio de todos los artículos
 select count(id_proveedor) from proveedor;  -- contamos la cantidad de id_proveedor ( llave primaria) que hay en proveedor
-select min(precio) from producto; -- procuto con el valor minimo
+select min(precio) from producto; -- producto con el valor minimo
 select max(precio) from producto; -- producto con el valor máximo
 -- GROUP BY
 select marca, sum(precio) from producto GROUP BY(marca); -- agrupo por marca la suma de los precios de cada marca
@@ -45,8 +45,28 @@ WHERE marca = "continental"
 ORDER BY nombre DESC; 
 SELECT * from producto -- todos los productos de marca con primera letra b ordenados por nombre de forma ascendente
 WHERE marca LIKE "b%"
-ORDER BY marca ASC; 
+ORDER BY marca ASC;
+ 
+-- Ejercicios
+-- 01 Obtener los nombes de los clientes de Salvadora
+SELECT nombre from cliente;
 
+-- 02 Obtener los nombres, marcas y precios de los productos de Salvadora
+SELECT nombre, marca, precio from producto; 
+
+-- 03 Obtener todos los datos de los productos cuyo precio esté entre 2000 y 3000
+select * from producto WHERE precio BETWEEN 2000 and 3000;
+
+-- 04 Obtener el numero de productos cuyo precio sea igual a 1250
+select count(cod_producto) from producto where precio = 1250;
+
+-- 05 obtener nombre, marca y precio del producto mas barato
+select nombre, marca, precio 
+from producto 
+where precio = (select min(precio) from producto); -- uso otro query dentro de where para encontar el precio minimo
+
+-- 06 seleccionar todos los clientes que no tengan celular, los celulares comienzan con 7 o 6
+select * from cliente where telefono not like "7%" and telefono not like "6%";
 
 
 
